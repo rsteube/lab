@@ -13,3 +13,6 @@ _test
 
 coverage*
 vendor
+
+_lab
+_lab.version
