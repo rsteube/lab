@@ -29,7 +29,7 @@ require (
 	github.com/spf13/cast v1.2.0 // indirect
 	github.com/spf13/cobra v0.0.0-20180412120829-615425954c3b
 	github.com/spf13/jwalterweatherman v0.0.0-20180109140146-7c0cea34c8ec // indirect
-	github.com/spf13/pflag v1.0.1 // indirect
+	github.com/spf13/pflag v1.0.1
 	github.com/spf13/viper v0.0.0-20180507071007-15738813a09d
 	github.com/stretchr/testify v1.2.1
 	github.com/tcnksm/go-gitconfig v0.1.2
@@ -41,4 +41,4 @@ require (
 	gopkg.in/DATA-DOG/go-sqlmock.v1 v1.3.0 // indirect
 )
 
-replace github.com/spf13/cobra => github.com/rsteube/cobra v0.0.1-zsh-completion-custom
+replace github.com/spf13/cobra => github.com/rsteube/cobra v0.0.1-zsh-completion-custom-with-fish
