@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/zaquestion/lab/internal/browser"
 	"github.com/zaquestion/lab/internal/gitlab"
+        zsh "github.com/rsteube/cobra-zsh-gen"
 )
 
 var browse = browser.Open
@@ -42,7 +43,7 @@ var issueBrowseCmd = &cobra.Command{
 }
 
 func init() {
-	issueBrowseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	issueBrowseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+	zsh.Wrap(issueBrowseCmd).MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	zsh.Wrap(issueBrowseCmd).MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
 	issueCmd.AddCommand(issueBrowseCmd)
 }

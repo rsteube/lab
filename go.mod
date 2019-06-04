@@ -13,6 +13,7 @@ require (
 	github.com/jtolds/gls v4.2.1+incompatible // indirect
 	github.com/lunixbochs/vtclean v0.0.0-20180621232353-2d01aacdc34a
 	github.com/magiconair/properties v1.7.6 // indirect
+	github.com/mattn/go-runewidth v0.0.2 // indirect
 	github.com/mitchellh/mapstructure v0.0.0-20180220230111-00c29f56e238 // indirect
 	github.com/onsi/gomega v1.4.3 // indirect
 	github.com/pelletier/go-toml v1.1.0 // indirect
@@ -25,6 +26,7 @@ require (
 	github.com/spf13/afero v1.1.0 // indirect
 	github.com/spf13/cast v1.2.0 // indirect
 	github.com/spf13/cobra v0.0.0-20180412120829-615425954c3b
+	github.com/rsteube/cobra-zsh-gen v0.0.0-20190604134725-f82687b5b153
 	github.com/spf13/jwalterweatherman v0.0.0-20180109140146-7c0cea34c8ec // indirect
 	github.com/spf13/pflag v1.0.1
 	github.com/spf13/viper v0.0.0-20180507071007-15738813a09d
@@ -37,5 +39,3 @@ require (
 	golang.org/x/tools v0.0.0-20190107155254-e063def13b29 // indirect
 	gopkg.in/DATA-DOG/go-sqlmock.v1 v1.3.0 // indirect
 )
-
-replace github.com/spf13/cobra => github.com/rsteube/cobra v0.0.1-zsh-completion-custom
