@@ -70,6 +70,7 @@ github.com/rivo/tview v0.0.0-20190721135419-23dc8a0944e4 h1:3L7UVoI/26LdSEPadEc4
 github.com/rivo/tview v0.0.0-20190721135419-23dc8a0944e4/go.mod h1:+rKjP5+h9HMwWRpAfhIkkQ9KE3m3Nz5rwn7YtUpwgqk=
 github.com/rivo/uniseg v0.0.0-20190513083848-b9f5b9457d44 h1:XKCbzPvK4/BbMXoMJOkYP2ANxiAEO0HM1xn6psSbXxY=
 github.com/rivo/uniseg v0.0.0-20190513083848-b9f5b9457d44/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
+github.com/rsteube/cobra-zsh-gen v1.0.0 h1:5gKPwP6ViI/OnvwIa1T0hVTwvwMpcdrD6PNyp3kh4CA=
 github.com/rsteube/cobra v0.0.1-zsh-completion-custom h1:Hqbid4kBOEu78syaZ8hCAIjwLZGqraO0zlyytAVNhkY=
 github.com/rsteube/cobra v0.0.1-zsh-completion-custom/go.mod h1:pAlNXnbm7kUeUgr/8AEn0Lv+VrT1T6obUvI1mC8KlvA=
 github.com/russross/blackfriday v1.5.1 h1:B8ZN6pD4PVofmlDCDUdELeYrbsVIDM/bpjW3v3zgcRc=

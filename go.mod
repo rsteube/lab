@@ -19,6 +19,7 @@ require (
 	github.com/pelletier/go-toml v1.1.0 // indirect
 	github.com/pkg/errors v0.8.0
 	github.com/rivo/tview v0.0.0-20190721135419-23dc8a0944e4
+	github.com/rsteube/cobra-zsh-gen v1.0.0
 	github.com/russross/blackfriday v1.5.1 // indirect
 	github.com/sirupsen/logrus v1.2.0 // indirect
 	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
