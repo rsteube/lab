@@ -96,7 +96,7 @@ func mrNoteText() (string, error) {
         func init() {
                 mrCreateNoteCmd.Flags().StringSliceP("message", "m", []string{}, "Use the given <msg>; multiple -m are concatenated as separate paragraphs")
 
-                mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-                mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+                //mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+                //mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
                 mrCmd.AddCommand(mrCreateNoteCmd)
         }

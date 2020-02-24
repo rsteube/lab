@@ -12,6 +12,7 @@ import (
 
 	retry "github.com/avast/retry-go"
 	"github.com/pkg/errors"
+	gogit "gopkg.in/src-d/go-git.v4"
 	gitconfig "github.com/tcnksm/go-gitconfig"
 )
 
@@ -182,6 +183,23 @@ func RemoteAdd(name, url, dir string) error {
 	}
 	fmt.Println("new remote:", name)
 	return nil
+}
+
+func Remotes() ([]string, error) {
+    repo, err := gogit.PlainOpen(".")
+    if err != nil {
+      return []string{}, err
+    }
+    remotes, err := repo.Remotes()
+    if err != nil {
+      return []string{}, err
+    }
+
+    names := make([]string, len(remotes))
+    for i, r := range remotes {
+      names[i] = r.Config().Name
+    }
+    return names, nil
 }
 
 // IsRemote returns true when passed a valid remote in the git repo

@@ -73,7 +73,7 @@ func init() {
 		&issueAll, "all", "a", false,
 		"List all issues on the project")
 
-	issueListCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+        ///issueListCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
 	issueListCmd.MarkFlagCustom("state", "(opened closed)")
 	issueCmd.AddCommand(issueListCmd)
 }

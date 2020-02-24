@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/git"
@@ -131,14 +132,25 @@ func parseCIVariables(vars []string) (map[string]string, error) {
 }
 
 func init() {
-	ciCreateCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote_branches origin")
 	ciCreateCmd.Flags().StringP("project", "p", "", "Project to create pipeline on")
 	ciCmd.AddCommand(ciCreateCmd)
+    zsh.Gen(ciCreateCmd).PositionalCompletion(
+        zsh.ActionCallback(func(args []string) zsh.Action {
+          if remotes, err := git.Remotes(); err != nil {
+            return zsh.ActionMessage(err.Error())
+          } else {
+            return zsh.ActionValues(remotes...)
+          }
+        }),
+    )
 
-	ciTriggerCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote_branches")
 	ciTriggerCmd.Flags().StringP("project", "p", "", "Project to run pipeline trigger on")
 	ciTriggerCmd.Flags().StringP("token", "t", os.Getenv("CI_JOB_TOKEN"), "Pipeline trigger token, optional if run within GitLabCI")
 	ciTriggerCmd.Flags().StringSliceP("variable", "v", []string{}, "Variables to pass to pipeline")
 
 	ciCmd.AddCommand(ciTriggerCmd)
+    zsh.Gen(ciTriggerCmd).PositionalCompletion(
+	    //ciTriggerCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote_branches")
+        zsh.ActionMessage("remote branches"),
+    )
 }

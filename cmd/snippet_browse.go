@@ -57,7 +57,7 @@ var snippetBrowseCmd = &cobra.Command{
 }
 
 func init() {
-	snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_snippet $words[2]")
+	//snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_snippet $words[2]")
 	snippetCmd.AddCommand(snippetBrowseCmd)
 }

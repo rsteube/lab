@@ -145,9 +145,9 @@ func printDiscussions(discussions []*gitlab.Discussion) {
 }
 
 func init() {
-	issueShowCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	issueShowCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
-	issueShowCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_issue")
+	//issueShowCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//issueShowCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+	//issueShowCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_issue")
 	issueShowCmd.Flags().BoolP("no-markdown", "M", false, "Don't use markdown renderer to print the issue description")
 	issueShowCmd.Flags().BoolP("comments", "c", false, "Show comments for the issue")
 	issueCmd.AddCommand(issueShowCmd)

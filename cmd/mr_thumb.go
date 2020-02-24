@@ -66,11 +66,11 @@ var mrThumbDownCmd = &cobra.Command{
 func init() {
 	mrCmd.AddCommand(mrThumbCmd)
 
-	mrThumbUpCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	mrThumbUpCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+	//mrThumbUpCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//mrThumbUpCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
 	mrThumbCmd.AddCommand(mrThumbUpCmd)
 
-	mrThumbDownCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	mrThumbDownCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+	//mrThumbDownCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//mrThumbDownCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
 	mrThumbCmd.AddCommand(mrThumbDownCmd)
 }

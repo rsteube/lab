@@ -61,5 +61,5 @@ func init() {
 	projectListCmd.Flags().BoolVar(&projectListConfig.Starred, "starred", false, "limit by your starred projects")
 	projectListCmd.Flags().IntVarP(&projectListConfig.Number, "number", "n", 100, "Number of projects to return")
 
-	projectListCmd.MarkZshCompPositionalArgumentCustom(1, "()")
+	//projectListCmd.MarkZshCompPositionalArgumentCustom(1, "()")
 }

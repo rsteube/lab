@@ -172,6 +172,6 @@ func init() {
 	snippetCreateCmd.Flags().StringSliceP("message", "m", []string{"-"}, "Use the given <msg>; multiple -m are concatenated as separate paragraphs")
 	snippetCmd.Flags().AddFlagSet(snippetCreateCmd.Flags())
 
-	snippetCreateCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//snippetCreateCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
 	snippetCmd.AddCommand(snippetCreateCmd)
 }

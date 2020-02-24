@@ -66,6 +66,6 @@ func init() {
 	snippetListCmd.Flags().IntVarP(&snippetListConfig.Number, "number", "n", 10, "Number of snippets to return")
 	snippetListCmd.Flags().BoolVarP(&snippetListConfig.All, "all", "a", false, "List all snippets")
 
-	snippetListCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//snippetListCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
 	snippetCmd.AddCommand(snippetListCmd)
 }

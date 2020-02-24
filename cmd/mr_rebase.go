@@ -31,7 +31,7 @@ var mrRebaseCmd = &cobra.Command{
 }
 
 func init() {
-	mrRebaseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	mrRebaseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+	//mrRebaseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//mrRebaseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
 	mrCmd.AddCommand(mrRebaseCmd)
 }

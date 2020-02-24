@@ -85,8 +85,8 @@ WebURL: %s
 }
 
 func init() {
-	mrShowCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	mrShowCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+	//mrShowCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
+	//mrShowCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
 	mrShowCmd.Flags().BoolP("no-markdown", "M", false, "Don't use markdown renderer to print the issue description")
 	mrCmd.AddCommand(mrShowCmd)
 }

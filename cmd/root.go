@@ -23,7 +23,7 @@ var RootCmd = &cobra.Command{
 	Use:                   "lab",
 	Short:                 "A Git Wrapper for GitLab",
 	Long:                  ``,
-	ZshCompletionFunction: zshCompletionFunction,
+	//ZshCompletionFunction: zshCompletionFunction, // TODO
 	Run: func(cmd *cobra.Command, args []string) {
 		if ok, err := cmd.Flags().GetBool("version"); err == nil && ok {
 			versionCmd.Run(cmd, args)
