@@ -1,18 +1,20 @@
 package cmd
 
 import (
-        "bytes"
-        "fmt"
-        "log"
-        "runtime"
-        "strconv"
-        "strings"
-        "text/template"
+	"bytes"
+	"fmt"
+	"log"
+	"runtime"
+	"strconv"
+	"strings"
+	"text/template"
 
-        "github.com/spf13/cobra"
-        gitlab "github.com/xanzy/go-gitlab"
-        "github.com/zaquestion/lab/internal/git"
-        lab "github.com/zaquestion/lab/internal/gitlab"
+	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/spf13/cobra"
+	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
+	"github.com/zaquestion/lab/internal/git"
+	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
 var mrCreateNoteCmd = &cobra.Command{
@@ -96,7 +98,9 @@ func mrNoteText() (string, error) {
         func init() {
                 mrCreateNoteCmd.Flags().StringSliceP("message", "m", []string{}, "Use the given <msg>; multiple -m are concatenated as separate paragraphs")
 
-                //mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-                //mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
                 mrCmd.AddCommand(mrCreateNoteCmd)
+                zsh.Gen(mrCreateNoteCmd).PositionalCompletion(
+                  action.Remotes(),
+                  // TODO mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+                )
         }

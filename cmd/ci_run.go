@@ -10,6 +10,7 @@ import (
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -135,13 +136,7 @@ func init() {
 	ciCreateCmd.Flags().StringP("project", "p", "", "Project to create pipeline on")
 	ciCmd.AddCommand(ciCreateCmd)
     zsh.Gen(ciCreateCmd).PositionalCompletion(
-        zsh.ActionCallback(func(args []string) zsh.Action {
-          if remotes, err := git.Remotes(); err != nil {
-            return zsh.ActionMessage(err.Error())
-          } else {
-            return zsh.ActionValues(remotes...)
-          }
-        }),
+        action.Remotes(),
     )
 
 	ciTriggerCmd.Flags().StringP("project", "p", "", "Project to run pipeline trigger on")
@@ -150,12 +145,6 @@ func init() {
 
 	ciCmd.AddCommand(ciTriggerCmd)
     zsh.Gen(ciTriggerCmd).PositionalCompletion(
-      zsh.ActionCallback(func(args []string) zsh.Action {
-          if branches, err := git.RemoteBranches(""); err != nil {
-            return  zsh.ActionMessage(err.Error())
-          } else {
-            return zsh.ActionValues(branches...)
-          }
-      }),
+      action.RemoteBranches(-1),
     )
 }

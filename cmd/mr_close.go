@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
+	"github.com/zaquestion/lab/cmd/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
@@ -34,7 +36,9 @@ var mrCloseCmd = &cobra.Command{
 }
 
 func init() {
-	//mrCloseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	//mrCloseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
 	mrCmd.AddCommand(mrCloseCmd)
+    zsh.Gen(mrCloseCmd).PositionalCompletion(
+      action.Remotes(),
+	  // TODO mrCloseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+    )
 }

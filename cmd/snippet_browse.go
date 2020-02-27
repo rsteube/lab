@@ -9,7 +9,7 @@ import (
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/zaquestion/lab/internal/git"
+	"github.com/zaquestion/lab/cmd/action"
 )
 
 var snippetBrowseCmd = &cobra.Command{
@@ -61,13 +61,7 @@ var snippetBrowseCmd = &cobra.Command{
 func init() {
 	snippetCmd.AddCommand(snippetBrowseCmd)
     zsh.Gen(snippetBrowseCmd).PositionalCompletion(
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if remotes, err := git.Remotes(); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(remotes...)
-        }
-      }),
+      action.Remotes(),
 	// TODO snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_snippet $words[2]")
     )
 }

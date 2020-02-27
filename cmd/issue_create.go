@@ -9,8 +9,10 @@ import (
 	"strings"
 	"text/template"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -129,6 +131,8 @@ func init() {
 	issueCreateCmd.Flags().StringSliceP("label", "l", []string{}, "Set the given label(s) on the created issue")
 	issueCreateCmd.Flags().StringSliceP("assignees", "a", []string{}, "Set assignees by username")
 
-	//issueCreateCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
 	issueCmd.AddCommand(issueCreateCmd)
+    zsh.Gen(issueCreateCmd).PositionalCompletion(
+      action.Remotes(),
+    )
 }

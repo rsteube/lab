@@ -9,9 +9,11 @@ import (
 	"strings"
 	"text/template"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -281,7 +283,9 @@ func issueEditCmdAddFlags(flags *pflag.FlagSet) *pflag.FlagSet {
 
 func init() {
 	issueEditCmdAddFlags(issueEditCmd.Flags())
-	//issueEditCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	//issueEditCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
 	issueCmd.AddCommand(issueEditCmd)
+    zsh.Gen(issueEditCmd).PositionalCompletion(
+      action.Remotes(),
+	  // TODO issueEditCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+    )
 }

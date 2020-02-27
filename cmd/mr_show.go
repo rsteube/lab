@@ -6,8 +6,10 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/glamour"
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
@@ -85,8 +87,10 @@ WebURL: %s
 }
 
 func init() {
-	//mrShowCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	//mrShowCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
 	mrShowCmd.Flags().BoolP("no-markdown", "M", false, "Don't use markdown renderer to print the issue description")
 	mrCmd.AddCommand(mrShowCmd)
+    zsh.Gen(mrShowCmd).PositionalCompletion(
+      action.Remotes(),
+	  // TODO mrShowCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+    )
 }

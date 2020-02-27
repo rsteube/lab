@@ -12,9 +12,11 @@ import (
 	"text/template"
 
 	"github.com/pkg/errors"
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitconfig "github.com/tcnksm/go-gitconfig"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -39,9 +41,11 @@ func init() {
 	mrCreateCmd.Flags().Int("milestone", -1, "Set milestone by milestone ID")
 	mergeRequestCmd.Flags().AddFlagSet(mrCreateCmd.Flags())
 
-	//mrCreateCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	//mrCreateCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_remote_branches $words[2]")
 	mrCmd.AddCommand(mrCreateCmd)
+    zsh.Gen(mrCreateCmd).PositionalCompletion(
+      action.Remotes(),
+	  // TODO mrCreateCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_remote_branches $words[2]")
+    )
 }
 
 // getAssignee returns the assigneeID for use with other GitLab API calls.

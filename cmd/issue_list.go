@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"log"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
@@ -73,7 +75,9 @@ func init() {
 		&issueAll, "all", "a", false,
 		"List all issues on the project")
 
-        ///issueListCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
 	issueListCmd.MarkFlagCustom("state", "(opened closed)")
 	issueCmd.AddCommand(issueListCmd)
+    zsh.Gen(issueListCmd).PositionalCompletion(
+      action.Remotes(),
+    )
 }

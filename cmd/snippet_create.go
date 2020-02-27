@@ -15,6 +15,7 @@ import (
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -175,12 +176,6 @@ func init() {
 
 	snippetCmd.AddCommand(snippetCreateCmd)
     zsh.Gen(snippetCreateCmd).PositionalCompletion(
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if remotes, err := git.Remotes(); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(remotes...)
-        }
-      }),
+      action.Remotes(),
     )
 }

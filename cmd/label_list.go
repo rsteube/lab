@@ -5,7 +5,9 @@ import (
 	"log"
 	"strings"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
+	"github.com/zaquestion/lab/cmd/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
@@ -50,4 +52,8 @@ lab label list remote "search term"  # search "remote" for labels with "search t
 
 func init() {
 	labelCmd.AddCommand(labelListCmd)
+    zsh.Gen(labelCmd).PositionalCompletion(
+      action.Remotes(),
+      // TODO search term completion (require value) 
+    )
 }

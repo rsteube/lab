@@ -6,7 +6,7 @@ import (
 
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
-	"github.com/zaquestion/lab/internal/git"
+	"github.com/zaquestion/lab/cmd/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
@@ -44,13 +44,7 @@ var snippetDeleteCmd = &cobra.Command{
 func init() {
 	snippetCmd.AddCommand(snippetDeleteCmd)
     zsh.Gen(snippetDeleteCmd).PositionalCompletion(
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if remotes, err := git.Remotes(); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(remotes...)
-        }
-      }),
+      action.Remotes(),
 	// TODO snippetDeleteCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_snippet $words[2]")
     )
 }

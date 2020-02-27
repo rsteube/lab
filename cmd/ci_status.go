@@ -9,6 +9,7 @@ import (
 	"github.com/pkg/errors"
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -89,19 +90,7 @@ func init() {
 	ciCmd.AddCommand(ciStatusCmd)
 
     zsh.Gen(ciStatusCmd).PositionalCompletion(
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if remotes, err := git.Remotes(); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(remotes...)
-        }
-      }),
-      zsh.ActionCallback(func(args []string) zsh.Action {
-          if branches, err := git.RemoteBranches(args[0]); err != nil {
-            return  zsh.ActionMessage(err.Error())
-          } else {
-            return zsh.ActionValues(branches...)
-          }
-      }),
+      action.Remotes(),
+      action.RemoteBranches(0),
     )
 }

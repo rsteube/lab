@@ -20,6 +20,7 @@ import (
 	"github.com/lunixbochs/vtclean"
 	gitlab "github.com/xanzy/go-gitlab"
 
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -636,24 +637,9 @@ func latestJobs(jobs []*gitlab.Job) []*gitlab.Job {
 }
 
 func init() {
-    // TODO
-	//ciViewCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	//ciViewCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_remote_branches $words[2]")
 	ciCmd.AddCommand(ciViewCmd)
     zsh.Gen(ciViewCmd).PositionalCompletion(
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if remotes, err := git.Remotes(); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(remotes...)
-        }
-      }),
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if branches, err := git.RemoteBranches(args[0]); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(branches...) // TODO
-        }
-      }),
+      action.Remotes(),
+      action.RemoteBranches(0),
     )
 }

@@ -16,4 +16,5 @@ var mergeRequestCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(mergeRequestCmd)
+    // TODO remote branch completion
 }

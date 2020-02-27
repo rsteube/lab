@@ -3,7 +3,9 @@ package cmd
 import (
 	"log"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
+	"github.com/zaquestion/lab/cmd/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
@@ -31,7 +33,9 @@ var mrRebaseCmd = &cobra.Command{
 }
 
 func init() {
-	//mrRebaseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	//mrRebaseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
 	mrCmd.AddCommand(mrRebaseCmd)
+    zsh.Gen(mrRebaseCmd).PositionalCompletion(
+      action.Remotes(),
+	  // TODO mrRebaseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+    )
 }

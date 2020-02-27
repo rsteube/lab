@@ -14,6 +14,7 @@ import (
 	"github.com/pkg/errors"
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -111,19 +112,7 @@ func doTrace(ctx context.Context, w io.Writer, pid interface{}, branch, name str
 func init() {
 	ciCmd.AddCommand(ciTraceCmd)
 	zsh.Gen(ciTraceCmd).PositionalCompletion(
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if remotes, err := git.Remotes(); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(remotes...)
-        }
-      }),
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if branches, err := git.RemoteBranches(args[0]); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          return zsh.ActionValues(branches...) // TODO
-        }
-      }),
+      action.Remotes(),
+      action.RemoteBranches(0),
 	)
 }
