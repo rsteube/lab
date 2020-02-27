@@ -173,6 +173,8 @@ github.com/rsteube/cobra-zsh-gen v1.2.5 h1:LO40PkL861vzfB/qcTMAdX9V10VmX7mo3zsKn
 github.com/rsteube/cobra-zsh-gen v1.2.5/go.mod h1:BjZ9HT6wf7SCP+Vk/EQ00kb0YZn0MUKaIjPVI2dbiZw=
 github.com/rsteube/cobra-zsh-gen v1.2.6 h1:IrBiZBgyFHu/c8KgqXpOTHzBlo+lmz/a5ywrGfbKV4s=
 github.com/rsteube/cobra-zsh-gen v1.2.6/go.mod h1:BjZ9HT6wf7SCP+Vk/EQ00kb0YZn0MUKaIjPVI2dbiZw=
+github.com/rsteube/cobra-zsh-gen v1.2.8 h1:sb6iW3YKwiS2uOAurZqhyrnDlNrKjmuvYMK5GVUcQBw=
+github.com/rsteube/cobra-zsh-gen v1.2.8/go.mod h1:BjZ9HT6wf7SCP+Vk/EQ00kb0YZn0MUKaIjPVI2dbiZw=
 github.com/russross/blackfriday v1.5.1 h1:B8ZN6pD4PVofmlDCDUdELeYrbsVIDM/bpjW3v3zgcRc=
 github.com/russross/blackfriday v1.5.1/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
 github.com/russross/blackfriday v1.5.2 h1:HyvC0ARfnZBqnXwABFeSZHpKvJHJJfPz81GNueLj0oo=

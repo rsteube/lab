@@ -2,6 +2,7 @@ module github.com/zaquestion/lab
 
 require (
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d
+	github.com/alecthomas/chroma v0.7.1
 	github.com/avast/retry-go v0.0.0-20180319101611-5469272a8171
 	github.com/charmbracelet/glamour v0.1.1-0.20200114010931-28cbdae8e7a9
 	github.com/charmbracelet/glow v0.2.0 // indirect
@@ -14,7 +15,7 @@ require (
 	github.com/onsi/gomega v1.4.3 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/rivo/tview v0.0.0-20191129065140-82b05c9fb329
-	github.com/rsteube/cobra-zsh-gen v1.2.6
+	github.com/rsteube/cobra-zsh-gen v1.2.8
 	github.com/sirupsen/logrus v1.2.0 // indirect
 	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
 	github.com/smartystreets/goconvey v0.0.0-20181108003508-044398e4856c // indirect

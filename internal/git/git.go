@@ -7,13 +7,15 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"time"
 
 	retry "github.com/avast/retry-go"
 	"github.com/pkg/errors"
-	gogit "gopkg.in/src-d/go-git.v4"
 	gitconfig "github.com/tcnksm/go-gitconfig"
+	gogit "gopkg.in/src-d/go-git.v4"
+	"gopkg.in/src-d/go-git.v4/plumbing"
 )
 
 // IsHub is true when using "hub" as the git binary
@@ -199,6 +201,28 @@ func Remotes() ([]string, error) {
     for i, r := range remotes {
       names[i] = r.Config().Name
     }
+    return names, nil
+}
+
+func RemoteBranches(remote string) ([]string, error) {
+    repo, err := gogit.PlainOpen(".")
+    if err != nil {
+      return []string{}, err
+    }
+
+    branches, err := repo.References() // TODO verify is a branch Branches didn't seem to work
+    if err != nil {
+      return []string{}, err
+    }
+    reg := regexp.MustCompile(`^refs/remotes/[^/]+/`)
+
+    names := []string{}
+    branches.ForEach(func(ref *plumbing.Reference) error {
+      if ref.Name().IsRemote() && strings.HasPrefix(ref.Name().String(), "refs/remotes/" + remote) {
+        names = append(names, reg.ReplaceAllString(ref.Name().String(), ""))
+      }
+      return nil
+    })
     return names, nil
 }
 
