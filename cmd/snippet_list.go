@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"log"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
 
@@ -66,6 +68,14 @@ func init() {
 	snippetListCmd.Flags().IntVarP(&snippetListConfig.Number, "number", "n", 10, "Number of snippets to return")
 	snippetListCmd.Flags().BoolVarP(&snippetListConfig.All, "all", "a", false, "List all snippets")
 
-	//snippetListCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
 	snippetCmd.AddCommand(snippetListCmd)
+    zsh.Gen(snippetListCmd).PositionalCompletion(
+      zsh.ActionCallback(func(args []string) zsh.Action {
+        if remotes, err := git.Remotes(); err != nil {
+          return zsh.ActionMessage(err.Error())
+        } else {
+          return zsh.ActionValues(remotes...)
+        }
+      }),
+    )
 }

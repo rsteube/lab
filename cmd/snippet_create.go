@@ -12,6 +12,7 @@ import (
 	"text/template"
 
 	"github.com/pkg/errors"
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/git"
@@ -172,6 +173,14 @@ func init() {
 	snippetCreateCmd.Flags().StringSliceP("message", "m", []string{"-"}, "Use the given <msg>; multiple -m are concatenated as separate paragraphs")
 	snippetCmd.Flags().AddFlagSet(snippetCreateCmd.Flags())
 
-	//snippetCreateCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
 	snippetCmd.AddCommand(snippetCreateCmd)
+    zsh.Gen(snippetCreateCmd).PositionalCompletion(
+      zsh.ActionCallback(func(args []string) zsh.Action {
+        if remotes, err := git.Remotes(); err != nil {
+          return zsh.ActionMessage(err.Error())
+        } else {
+          return zsh.ActionValues(remotes...)
+        }
+      }),
+    )
 }

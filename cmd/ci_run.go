@@ -150,7 +150,12 @@ func init() {
 
 	ciCmd.AddCommand(ciTriggerCmd)
     zsh.Gen(ciTriggerCmd).PositionalCompletion(
-	    // TODO ciTriggerCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote_branches")
-        zsh.ActionMessage("TODO remote branches"),
+      zsh.ActionCallback(func(args []string) zsh.Action {
+          if branches, err := git.RemoteBranches(""); err != nil {
+            return  zsh.ActionMessage(err.Error())
+          } else {
+            return zsh.ActionValues(branches...)
+          }
+      }),
     )
 }
