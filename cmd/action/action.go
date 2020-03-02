@@ -61,3 +61,18 @@ func Issues(issueList func(args []string) ([]*gitlab.Issue, error)) zsh.Action {
         }
       })
 }
+
+func MergeRequests(mrList func(args []string) ([]*gitlab.MergeRequest, error)) zsh.Action {
+      return zsh.ActionCallback(func(args []string) zsh.Action {
+        if mergeRequests, err := mrList(args[:0]); err != nil {
+          return zsh.ActionMessage(err.Error())
+        } else {
+          values := make([]string, len(mergeRequests)*2)
+          for index, mergeRequest := range mergeRequests {
+            values[index*2] = strconv.Itoa(mergeRequest.IID)
+            values[index*2+1] = mergeRequest.Title
+          }
+          return zsh.ActionValuesDescribed(values...)
+        }
+      })
+}

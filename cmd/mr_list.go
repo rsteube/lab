@@ -27,16 +27,27 @@ var listCmd = &cobra.Command{
 	Long:    ``,
 	Args:    cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		rn, _, err := parseArgs(args)
+		mrs, err := mrList(args)
 		if err != nil {
 			log.Fatal(err)
+		}
+		for _, mr := range mrs {
+			fmt.Printf("#%d %s\n", mr.IID, mr.Title)
+		}
+	},
+}
+
+func mrList(args []string) ([]*gitlab.MergeRequest, error) {
+		rn, _, err := parseArgs(args)
+		if err != nil {
+            return nil, err
 		}
 
 		num := mrNumRet
 		if mrAll {
 			num = -1
 		}
-		mrs, err := lab.MRList(rn, gitlab.ListProjectMergeRequestsOptions{
+		return  lab.MRList(rn, gitlab.ListProjectMergeRequestsOptions{
 			ListOptions: gitlab.ListOptions{
 				PerPage: mrNumRet,
 			},
@@ -45,13 +56,6 @@ var listCmd = &cobra.Command{
 			TargetBranch: &mrTargetBranch,
 			OrderBy:      gitlab.String("updated_at"),
 		}, num)
-		if err != nil {
-			log.Fatal(err)
-		}
-		for _, mr := range mrs {
-			fmt.Printf("#%d %s\n", mr.IID, mr.Title)
-		}
-	},
 }
 
 func init() {

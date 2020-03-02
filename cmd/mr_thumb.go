@@ -71,12 +71,12 @@ func init() {
 	mrThumbCmd.AddCommand(mrThumbUpCmd)
     zsh.Gen(mrThumbUpCmd).PositionalCompletion(
       action.Remotes(),
-	  // TODO mrThumbUpCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+      action.MergeRequests(mrList),
     )
 
 	mrThumbCmd.AddCommand(mrThumbDownCmd)
     zsh.Gen(mrThumbDownCmd).PositionalCompletion(
       action.Remotes(),
-	  //mrThumbDownCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+      action.MergeRequests(mrList),
     )
 }

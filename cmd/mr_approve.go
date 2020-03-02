@@ -39,6 +39,6 @@ func init() {
 	mrCmd.AddCommand(mrApproveCmd)
     zsh.Gen(mrApproveCmd).PositionalCompletion(
       action.Remotes(),
-	  // TODO mrApproveCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_merge_request $words[2]")
+      action.MergeRequests(mrList),
     )
 }
