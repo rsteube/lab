@@ -44,7 +44,7 @@ func init() {
 	mrCmd.AddCommand(mrCreateCmd)
     zsh.Gen(mrCreateCmd).PositionalCompletion(
       action.Remotes(),
-	  // TODO mrCreateCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_remote_branches $words[2]")
+      action.RemoteBranches(0),
     )
 }
 

@@ -101,6 +101,6 @@ func mrNoteText() (string, error) {
                 mrCmd.AddCommand(mrCreateNoteCmd)
                 zsh.Gen(mrCreateNoteCmd).PositionalCompletion(
                   action.Remotes(),
-                  // TODO mr completion MarkZsh
+                  action.MergeRequests(mrList),
                 )
         }

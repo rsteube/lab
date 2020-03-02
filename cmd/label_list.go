@@ -54,6 +54,5 @@ func init() {
 	labelCmd.AddCommand(labelListCmd)
     zsh.Gen(labelCmd).PositionalCompletion(
       action.Remotes(),
-      // TODO search term completion (require value) 
     )
 }

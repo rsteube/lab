@@ -44,7 +44,6 @@ var issueBrowseCmd = &cobra.Command{
 }
 
 func init() {
-    // TODO
 	issueCmd.AddCommand(issueBrowseCmd)
     zsh.Gen(issueBrowseCmd).PositionalCompletion(
       action.Remotes(),
