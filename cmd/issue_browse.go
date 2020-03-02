@@ -48,6 +48,6 @@ func init() {
 	issueCmd.AddCommand(issueBrowseCmd)
     zsh.Gen(issueBrowseCmd).PositionalCompletion(
       action.Remotes(),
-	  // TODO issueBrowseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+      action.Issues(issueList),
     )
 }

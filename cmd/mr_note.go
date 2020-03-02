@@ -101,6 +101,6 @@ func mrNoteText() (string, error) {
                 mrCmd.AddCommand(mrCreateNoteCmd)
                 zsh.Gen(mrCreateNoteCmd).PositionalCompletion(
                   action.Remotes(),
-                  // TODO mrCreateNoteCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+                  // TODO mr completion MarkZsh
                 )
         }

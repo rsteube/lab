@@ -29,9 +29,20 @@ lab issue list "search terms"         # search issues for "search terms"
 lab issue search "search terms"       # same as above
 lab issue list remote "search terms"  # search "remote" for issues with "search terms"`,
 	Run: func(cmd *cobra.Command, args []string) {
-		rn, issueSearch, err := parseArgsRemoteString(args)
+		issues, err := issueList(args)
 		if err != nil {
 			log.Fatal(err)
+		}
+		for _, issue := range issues {
+			fmt.Printf("#%d %s\n", issue.IID, issue.Title)
+		}
+	},
+}
+
+func issueList(args []string) ([]*gitlab.Issue, error) {
+		rn, issueSearch, err := parseArgsRemoteString(args)
+		if err != nil {
+            return nil, err
 		}
 
 		opts := gitlab.ListProjectIssuesOptions{
@@ -51,14 +62,7 @@ lab issue list remote "search terms"  # search "remote" for issues with "search 
 		if issueAll {
 			num = -1
 		}
-		issues, err := lab.IssueList(rn, opts, num)
-		if err != nil {
-			log.Fatal(err)
-		}
-		for _, issue := range issues {
-			fmt.Printf("#%d %s\n", issue.IID, issue.Title)
-		}
-	},
+		return lab.IssueList(rn, opts, num)
 }
 
 func init() {

@@ -34,13 +34,28 @@ func RemoteBranches(argIndex int) zsh.Action {
 
 func Snippets(snippetList func(args []string) ([]*gitlab.Snippet, error)) zsh.Action {
       return zsh.ActionCallback(func(args []string) zsh.Action {
-        if snips, err := snippetList(args); err != nil {
+        if snips, err := snippetList(args[:0]); err != nil {
           return zsh.ActionMessage(err.Error())
         } else {
           values := make([]string, len(snips)*2)
           for index, snip := range snips {
             values[index*2] = strconv.Itoa(snip.ID)
             values[index*2+1] = snip.Title
+          }
+          return zsh.ActionValuesDescribed(values...)
+        }
+      })
+}
+
+func Issues(issueList func(args []string) ([]*gitlab.Issue, error)) zsh.Action {
+      return zsh.ActionCallback(func(args []string) zsh.Action {
+        if issues, err := issueList(args[:0]); err != nil {
+          return zsh.ActionMessage(err.Error())
+        } else {
+          values := make([]string, len(issues)*2)
+          for index, issue := range issues {
+            values[index*2] = strconv.Itoa(issue.IID)
+            values[index*2+1] = issue.Title
           }
           return zsh.ActionValuesDescribed(values...)
         }

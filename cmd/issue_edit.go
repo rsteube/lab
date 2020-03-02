@@ -286,6 +286,6 @@ func init() {
 	issueCmd.AddCommand(issueEditCmd)
     zsh.Gen(issueEditCmd).PositionalCompletion(
       action.Remotes(),
-	  // TODO issueEditCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_issue $words[2]")
+      action.Issues(issueList),
     )
 }
