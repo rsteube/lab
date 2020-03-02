@@ -68,8 +68,11 @@ func init() {
 		"filter merge requests by target branch")
 	listCmd.Flags().BoolVarP(&mrAll, "all", "a", false, "List all MRs on the project")
 
-	listCmd.MarkFlagCustom("state", "(opened closed merged)")
 	mrCmd.AddCommand(listCmd)
+    zsh.Gen(listCmd).FlagCompletion(zsh.ActionMap{
+      "state": zsh.ActionValues("opened", "closed", "merged"),
+    })
+
     zsh.Gen(listCmd).PositionalCompletion(
       action.Remotes(),
     )

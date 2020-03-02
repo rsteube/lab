@@ -18,7 +18,8 @@ var completionCmd = &cobra.Command{
 		case "bash":
 			RootCmd.GenBashCompletion(os.Stdout)
 		case "zsh":
-			RootCmd.GenZshCompletion(os.Stdout)
+            cmd, _, _ := RootCmd.Find([]string{"_zsh_completion"})
+            cmd.Run(cmd, []string{})
 		default:
 			println("only 'bash' or 'zsh' allowed")
 		}

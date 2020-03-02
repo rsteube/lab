@@ -75,8 +75,10 @@ func init() {
 		&issueAll, "all", "a", false,
 		"List all issues on the project")
 
-	issueListCmd.MarkFlagCustom("state", "(opened closed)")
 	issueCmd.AddCommand(issueListCmd)
+    zsh.Gen(issueListCmd).FlagCompletion(zsh.ActionMap{
+      "state": zsh.ActionValues("opened", "closed"),
+    })
     zsh.Gen(issueListCmd).PositionalCompletion(
       action.Remotes(),
     )
