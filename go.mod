@@ -34,5 +34,3 @@ require (
 )
 
 go 1.13
-
-replace github.com/rsteube/cobra-zsh-gen => ../cobra-zsh-gen
