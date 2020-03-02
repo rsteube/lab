@@ -23,9 +23,20 @@ var snippetListCmd = &cobra.Command{
 	Short:   "List personal or project snippets",
 	Long:    ``,
 	Run: func(cmd *cobra.Command, args []string) {
+        snips, err := snippetList(args)
+		if err != nil {
+		    log.Fatal(err)
+		}
+		for _, snip := range snips {
+			fmt.Printf("#%d %s\n", snip.ID, snip.Title)
+		}
+	},
+}
+
+func snippetList(args []string) ([]*gitlab.Snippet, error) {
 		rn, _, err := parseArgs(args)
 		if err != nil {
-			log.Fatal(err)
+            return nil, err
 		}
 		listOpts := gitlab.ListOptions{
 			PerPage: snippetListConfig.Number,
@@ -39,29 +50,15 @@ var snippetListCmd = &cobra.Command{
 		// if this should be a personal snippet
 		if global || rn == "" {
 			opts := gitlab.ListSnippetsOptions(listOpts)
-			snips, err := lab.SnippetList(opts, num)
-			if err != nil {
-				log.Fatal(err)
-			}
-			for _, snip := range snips {
-				fmt.Printf("#%d %s\n", snip.ID, snip.Title)
-			}
-			return
+            return lab.SnippetList(opts, num)
 		}
 
 		project, err := lab.FindProject(rn)
 		if err != nil {
-			log.Fatal(err)
+            return nil, err
 		}
 		opts := gitlab.ListProjectSnippetsOptions(listOpts)
-		snips, err := lab.ProjectSnippetList(project.ID, opts, num)
-		if err != nil {
-			log.Fatal(err)
-		}
-		for _, snip := range snips {
-			fmt.Printf("#%d %s\n", snip.ID, snip.Title)
-		}
-	},
+		return lab.ProjectSnippetList(project.ID, opts, num)
 }
 
 func init() {

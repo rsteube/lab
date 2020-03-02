@@ -62,6 +62,17 @@ func init() {
 	snippetCmd.AddCommand(snippetBrowseCmd)
     zsh.Gen(snippetBrowseCmd).PositionalCompletion(
       action.Remotes(),
-	// TODO snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_snippet $words[2]")
+      zsh.ActionCallback(func(args []string) zsh.Action {
+        if snips, err := snippetList(args); err != nil {
+          return zsh.ActionMessage(err.Error())
+        } else {
+          values := make([]string, len(snips)*2)
+          for index, snip := range snips {
+            values[index*2] = strconv.Itoa(snip.ID)
+            values[index*2+1] = snip.Title
+          }
+          return zsh.ActionValuesDescribed(values...)
+        }
+      }),
     )
 }
