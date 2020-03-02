@@ -45,6 +45,6 @@ func init() {
 	snippetCmd.AddCommand(snippetDeleteCmd)
     zsh.Gen(snippetDeleteCmd).PositionalCompletion(
       action.Remotes(),
-	// TODO snippetDeleteCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_snippet $words[2]")
+      action.Snippets(snippetList),
     )
 }

@@ -62,17 +62,6 @@ func init() {
 	snippetCmd.AddCommand(snippetBrowseCmd)
     zsh.Gen(snippetBrowseCmd).PositionalCompletion(
       action.Remotes(),
-      zsh.ActionCallback(func(args []string) zsh.Action {
-        if snips, err := snippetList(args); err != nil {
-          return zsh.ActionMessage(err.Error())
-        } else {
-          values := make([]string, len(snips)*2)
-          for index, snip := range snips {
-            values[index*2] = strconv.Itoa(snip.ID)
-            values[index*2+1] = snip.Title
-          }
-          return zsh.ActionValuesDescribed(values...)
-        }
-      }),
+      action.Snippets(snippetList),
     )
 }
