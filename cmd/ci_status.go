@@ -89,8 +89,8 @@ func init() {
 	ciStatusCmd.Flags().Bool("wait", false, "Continuously print the status and wait to exit until the pipeline finishes. Exit code indicates pipeline status")
 	ciCmd.AddCommand(ciStatusCmd)
 
-    zsh.Gen(ciStatusCmd).PositionalCompletion(
-      action.Remotes(),
-      action.RemoteBranches(0),
-    )
+	zsh.Gen(ciStatusCmd).PositionalCompletion(
+		action.Remotes(),
+		action.RemoteBranches(0),
+	)
 }

@@ -52,7 +52,7 @@ lab label list remote "search term"  # search "remote" for labels with "search t
 
 func init() {
 	labelCmd.AddCommand(labelListCmd)
-    zsh.Gen(labelCmd).PositionalCompletion(
-      action.Remotes(),
-    )
+	zsh.Gen(labelCmd).PositionalCompletion(
+		action.Remotes(),
+	)
 }

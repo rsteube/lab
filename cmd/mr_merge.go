@@ -35,8 +35,8 @@ var mrMergeCmd = &cobra.Command{
 
 func init() {
 	mrCmd.AddCommand(mrMergeCmd)
-    zsh.Gen(mrMergeCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrMergeCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 }

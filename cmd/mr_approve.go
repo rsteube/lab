@@ -37,8 +37,8 @@ var mrApproveCmd = &cobra.Command{
 
 func init() {
 	mrCmd.AddCommand(mrApproveCmd)
-    zsh.Gen(mrApproveCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrApproveCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 }

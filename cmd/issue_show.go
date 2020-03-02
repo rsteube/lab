@@ -153,6 +153,6 @@ func init() {
 
 	zsh.Gen(issueShowCmd).PositionalCompletion(
 		action.Remotes(),
-        action.Issues(issueList),
+		action.Issues(issueList),
 	)
 }

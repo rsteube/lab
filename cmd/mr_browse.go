@@ -65,8 +65,8 @@ var mrBrowseCmd = &cobra.Command{
 
 func init() {
 	mrCmd.AddCommand(mrBrowseCmd)
-    zsh.Gen(mrBrowseCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrBrowseCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 }

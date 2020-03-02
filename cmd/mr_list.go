@@ -38,24 +38,24 @@ var listCmd = &cobra.Command{
 }
 
 func mrList(args []string) ([]*gitlab.MergeRequest, error) {
-		rn, _, err := parseArgs(args)
-		if err != nil {
-            return nil, err
-		}
+	rn, _, err := parseArgs(args)
+	if err != nil {
+		return nil, err
+	}
 
-		num := mrNumRet
-		if mrAll {
-			num = -1
-		}
-		return  lab.MRList(rn, gitlab.ListProjectMergeRequestsOptions{
-			ListOptions: gitlab.ListOptions{
-				PerPage: mrNumRet,
-			},
-			Labels:       mrLabels,
-			State:        &mrState,
-			TargetBranch: &mrTargetBranch,
-			OrderBy:      gitlab.String("updated_at"),
-		}, num)
+	num := mrNumRet
+	if mrAll {
+		num = -1
+	}
+	return lab.MRList(rn, gitlab.ListProjectMergeRequestsOptions{
+		ListOptions: gitlab.ListOptions{
+			PerPage: mrNumRet,
+		},
+		Labels:       mrLabels,
+		State:        &mrState,
+		TargetBranch: &mrTargetBranch,
+		OrderBy:      gitlab.String("updated_at"),
+	}, num)
 }
 
 func init() {
@@ -73,11 +73,11 @@ func init() {
 	listCmd.Flags().BoolVarP(&mrAll, "all", "a", false, "List all MRs on the project")
 
 	mrCmd.AddCommand(listCmd)
-    zsh.Gen(listCmd).FlagCompletion(zsh.ActionMap{
-      "state": zsh.ActionValues("opened", "closed", "merged"),
-    })
+	zsh.Gen(listCmd).FlagCompletion(zsh.ActionMap{
+		"state": zsh.ActionValues("opened", "closed", "merged"),
+	})
 
-    zsh.Gen(listCmd).PositionalCompletion(
-      action.Remotes(),
-    )
+	zsh.Gen(listCmd).PositionalCompletion(
+		action.Remotes(),
+	)
 }

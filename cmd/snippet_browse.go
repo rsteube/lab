@@ -60,8 +60,8 @@ var snippetBrowseCmd = &cobra.Command{
 
 func init() {
 	snippetCmd.AddCommand(snippetBrowseCmd)
-    zsh.Gen(snippetBrowseCmd).PositionalCompletion(
-      action.Remotes(),
-      action.Snippets(snippetList),
-    )
+	zsh.Gen(snippetBrowseCmd).PositionalCompletion(
+		action.Remotes(),
+		action.Snippets(snippetList),
+	)
 }

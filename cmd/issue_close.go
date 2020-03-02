@@ -37,8 +37,8 @@ var issueCloseCmd = &cobra.Command{
 
 func init() {
 	issueCmd.AddCommand(issueCloseCmd)
-    zsh.Gen(issueCloseCmd).PositionalCompletion(
-      action.Remotes(),
-      action.Issues(issueList),
-    )
+	zsh.Gen(issueCloseCmd).PositionalCompletion(
+		action.Remotes(),
+		action.Issues(issueList),
+	)
 }

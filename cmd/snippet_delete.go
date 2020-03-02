@@ -43,8 +43,8 @@ var snippetDeleteCmd = &cobra.Command{
 
 func init() {
 	snippetCmd.AddCommand(snippetDeleteCmd)
-    zsh.Gen(snippetDeleteCmd).PositionalCompletion(
-      action.Remotes(),
-      action.Snippets(snippetList),
-    )
+	zsh.Gen(snippetDeleteCmd).PositionalCompletion(
+		action.Remotes(),
+		action.Snippets(snippetList),
+	)
 }

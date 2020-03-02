@@ -99,8 +99,8 @@ func init() {
 	issueCreateNoteCmd.Flags().StringSliceP("message", "m", []string{}, "Use the given <msg>; multiple -m are concatenated as separate paragraphs")
 
 	issueCmd.AddCommand(issueCreateNoteCmd)
-    zsh.Gen(issueCreateCmd).PositionalCompletion(
-      action.Remotes(),
-      action.Issues(issueList),
-    )
+	zsh.Gen(issueCreateCmd).PositionalCompletion(
+		action.Remotes(),
+		action.Issues(issueList),
+	)
 }

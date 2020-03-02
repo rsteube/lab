@@ -175,7 +175,7 @@ func init() {
 	snippetCmd.Flags().AddFlagSet(snippetCreateCmd.Flags())
 
 	snippetCmd.AddCommand(snippetCreateCmd)
-    zsh.Gen(snippetCreateCmd).PositionalCompletion(
-      action.Remotes(),
-    )
+	zsh.Gen(snippetCreateCmd).PositionalCompletion(
+		action.Remotes(),
+	)
 }

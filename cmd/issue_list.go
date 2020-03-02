@@ -40,29 +40,29 @@ lab issue list remote "search terms"  # search "remote" for issues with "search 
 }
 
 func issueList(args []string) ([]*gitlab.Issue, error) {
-		rn, issueSearch, err := parseArgsRemoteString(args)
-		if err != nil {
-            return nil, err
-		}
+	rn, issueSearch, err := parseArgsRemoteString(args)
+	if err != nil {
+		return nil, err
+	}
 
-		opts := gitlab.ListProjectIssuesOptions{
-			ListOptions: gitlab.ListOptions{
-				PerPage: issueNumRet,
-			},
-			Labels:  issueLabels,
-			State:   &issueState,
-			OrderBy: gitlab.String("updated_at"),
-		}
+	opts := gitlab.ListProjectIssuesOptions{
+		ListOptions: gitlab.ListOptions{
+			PerPage: issueNumRet,
+		},
+		Labels:  issueLabels,
+		State:   &issueState,
+		OrderBy: gitlab.String("updated_at"),
+	}
 
-		if issueSearch != "" {
-			opts.Search = &issueSearch
-		}
+	if issueSearch != "" {
+		opts.Search = &issueSearch
+	}
 
-		num := issueNumRet
-		if issueAll {
-			num = -1
-		}
-		return lab.IssueList(rn, opts, num)
+	num := issueNumRet
+	if issueAll {
+		num = -1
+	}
+	return lab.IssueList(rn, opts, num)
 }
 
 func init() {
@@ -80,10 +80,10 @@ func init() {
 		"List all issues on the project")
 
 	issueCmd.AddCommand(issueListCmd)
-    zsh.Gen(issueListCmd).FlagCompletion(zsh.ActionMap{
-      "state": zsh.ActionValues("opened", "closed"),
-    })
-    zsh.Gen(issueListCmd).PositionalCompletion(
-      action.Remotes(),
-    )
+	zsh.Gen(issueListCmd).FlagCompletion(zsh.ActionMap{
+		"state": zsh.ActionValues("opened", "closed"),
+	})
+	zsh.Gen(issueListCmd).PositionalCompletion(
+		action.Remotes(),
+	)
 }

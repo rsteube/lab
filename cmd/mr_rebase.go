@@ -34,8 +34,8 @@ var mrRebaseCmd = &cobra.Command{
 
 func init() {
 	mrCmd.AddCommand(mrRebaseCmd)
-    zsh.Gen(mrRebaseCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrRebaseCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 }

@@ -638,8 +638,8 @@ func latestJobs(jobs []*gitlab.Job) []*gitlab.Job {
 
 func init() {
 	ciCmd.AddCommand(ciViewCmd)
-    zsh.Gen(ciViewCmd).PositionalCompletion(
-      action.Remotes(),
-      action.RemoteBranches(0),
-    )
+	zsh.Gen(ciViewCmd).PositionalCompletion(
+		action.Remotes(),
+		action.RemoteBranches(0),
+	)
 }

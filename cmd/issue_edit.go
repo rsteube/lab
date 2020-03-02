@@ -284,8 +284,8 @@ func issueEditCmdAddFlags(flags *pflag.FlagSet) *pflag.FlagSet {
 func init() {
 	issueEditCmdAddFlags(issueEditCmd.Flags())
 	issueCmd.AddCommand(issueEditCmd)
-    zsh.Gen(issueEditCmd).PositionalCompletion(
-      action.Remotes(),
-      action.Issues(issueList),
-    )
+	zsh.Gen(issueEditCmd).PositionalCompletion(
+		action.Remotes(),
+		action.Issues(issueList),
+	)
 }

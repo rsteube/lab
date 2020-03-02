@@ -37,8 +37,8 @@ var mrCloseCmd = &cobra.Command{
 
 func init() {
 	mrCmd.AddCommand(mrCloseCmd)
-    zsh.Gen(mrCloseCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrCloseCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 }

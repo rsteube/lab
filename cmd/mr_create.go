@@ -42,10 +42,10 @@ func init() {
 	mergeRequestCmd.Flags().AddFlagSet(mrCreateCmd.Flags())
 
 	mrCmd.AddCommand(mrCreateCmd)
-    zsh.Gen(mrCreateCmd).PositionalCompletion(
-      action.Remotes(),
-      action.RemoteBranches(0),
-    )
+	zsh.Gen(mrCreateCmd).PositionalCompletion(
+		action.Remotes(),
+		action.RemoteBranches(0),
+	)
 }
 
 // getAssignee returns the assigneeID for use with other GitLab API calls.

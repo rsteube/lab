@@ -132,7 +132,7 @@ func init() {
 	issueCreateCmd.Flags().StringSliceP("assignees", "a", []string{}, "Set assignees by username")
 
 	issueCmd.AddCommand(issueCreateCmd)
-    zsh.Gen(issueCreateCmd).PositionalCompletion(
-      action.Remotes(),
-    )
+	zsh.Gen(issueCreateCmd).PositionalCompletion(
+		action.Remotes(),
+	)
 }

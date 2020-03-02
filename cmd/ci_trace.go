@@ -112,7 +112,7 @@ func doTrace(ctx context.Context, w io.Writer, pid interface{}, branch, name str
 func init() {
 	ciCmd.AddCommand(ciTraceCmd)
 	zsh.Gen(ciTraceCmd).PositionalCompletion(
-      action.Remotes(),
-      action.RemoteBranches(0),
+		action.Remotes(),
+		action.RemoteBranches(0),
 	)
 }

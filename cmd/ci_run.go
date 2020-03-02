@@ -135,16 +135,16 @@ func parseCIVariables(vars []string) (map[string]string, error) {
 func init() {
 	ciCreateCmd.Flags().StringP("project", "p", "", "Project to create pipeline on")
 	ciCmd.AddCommand(ciCreateCmd)
-    zsh.Gen(ciCreateCmd).PositionalCompletion(
-        action.Remotes(),
-    )
+	zsh.Gen(ciCreateCmd).PositionalCompletion(
+		action.Remotes(),
+	)
 
 	ciTriggerCmd.Flags().StringP("project", "p", "", "Project to run pipeline trigger on")
 	ciTriggerCmd.Flags().StringP("token", "t", os.Getenv("CI_JOB_TOKEN"), "Pipeline trigger token, optional if run within GitLabCI")
 	ciTriggerCmd.Flags().StringSliceP("variable", "v", []string{}, "Variables to pass to pipeline")
 
 	ciCmd.AddCommand(ciTriggerCmd)
-    zsh.Gen(ciTriggerCmd).PositionalCompletion(
-      action.RemoteBranches(-1),
-    )
+	zsh.Gen(ciTriggerCmd).PositionalCompletion(
+		action.RemoteBranches(-1),
+	)
 }

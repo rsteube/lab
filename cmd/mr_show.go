@@ -89,8 +89,8 @@ WebURL: %s
 func init() {
 	mrShowCmd.Flags().BoolP("no-markdown", "M", false, "Don't use markdown renderer to print the issue description")
 	mrCmd.AddCommand(mrShowCmd)
-    zsh.Gen(mrShowCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrShowCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 }

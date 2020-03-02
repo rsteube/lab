@@ -69,14 +69,14 @@ func init() {
 	mrCmd.AddCommand(mrThumbCmd)
 
 	mrThumbCmd.AddCommand(mrThumbUpCmd)
-    zsh.Gen(mrThumbUpCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrThumbUpCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 
 	mrThumbCmd.AddCommand(mrThumbDownCmd)
-    zsh.Gen(mrThumbDownCmd).PositionalCompletion(
-      action.Remotes(),
-      action.MergeRequests(mrList),
-    )
+	zsh.Gen(mrThumbDownCmd).PositionalCompletion(
+		action.Remotes(),
+		action.MergeRequests(mrList),
+	)
 }
