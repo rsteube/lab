@@ -6,8 +6,10 @@ import (
 	"path"
 	"strconv"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"github.com/zaquestion/lab/cmd/action"
 )
 
 var snippetBrowseCmd = &cobra.Command{
@@ -57,7 +59,9 @@ var snippetBrowseCmd = &cobra.Command{
 }
 
 func init() {
-	snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote")
-	snippetBrowseCmd.MarkZshCompPositionalArgumentCustom(2, "__lab_completion_snippet $words[2]")
 	snippetCmd.AddCommand(snippetBrowseCmd)
+	zsh.Gen(snippetBrowseCmd).PositionalCompletion(
+		action.Remotes(),
+		action.Snippets(snippetList),
+	)
 }

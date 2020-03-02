@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"log"
 
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitconfig "github.com/tcnksm/go-gitconfig"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -92,9 +94,12 @@ var checkoutCmd = &cobra.Command{
 }
 
 func init() {
-	checkoutCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_merge_request origin")
-
 	checkoutCmd.Flags().StringVarP(&mrCheckoutCfg.branch, "branch", "b", "", "checkout merge request with <branch> name")
 	checkoutCmd.Flags().BoolVarP(&mrCheckoutCfg.track, "track", "t", false, "set checked out branch to track mr author remote branch, adds remote if needed")
 	mrCmd.AddCommand(checkoutCmd)
+	zsh.Gen(checkoutCmd).PositionalCompletion(
+		zsh.ActionCallback(func(args []string) zsh.Action {
+			return action.MergeRequests(mrList).Callback([]string{"origin"})
+		}),
+	)
 }

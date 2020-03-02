@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
+	"github.com/zaquestion/lab/cmd/action"
 )
 
 var mergeRequestCmd = &cobra.Command{
@@ -16,4 +18,8 @@ var mergeRequestCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(mergeRequestCmd)
+	zsh.Gen(mergeRequestCmd).PositionalCompletion(
+		action.Remotes(),
+		action.RemoteBranches(0),
+	)
 }

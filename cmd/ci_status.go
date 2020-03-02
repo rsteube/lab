@@ -8,8 +8,10 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
+	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
+	"github.com/zaquestion/lab/cmd/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )
@@ -99,7 +101,11 @@ lab ci status --wait`,
 }
 
 func init() {
-	ciStatusCmd.MarkZshCompPositionalArgumentCustom(1, "__lab_completion_remote_branches")
 	ciStatusCmd.Flags().Bool("wait", false, "Continuously print the status and wait to exit until the pipeline finishes. Exit code indicates pipeline status")
 	ciCmd.AddCommand(ciStatusCmd)
+
+	zsh.Gen(ciStatusCmd).PositionalCompletion(
+		action.Remotes(),
+		action.RemoteBranches(0),
+	)
 }
