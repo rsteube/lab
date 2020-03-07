@@ -3,7 +3,7 @@ package cmd
 import (
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
-	"github.com/zaquestion/lab/cmd/action"
+	"github.com/zaquestion/lab/internal/action"
 )
 
 var mergeRequestCmd = &cobra.Command{

@@ -14,7 +14,7 @@ import (
 	"github.com/pkg/errors"
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
-	"github.com/zaquestion/lab/cmd/action"
+	"github.com/zaquestion/lab/internal/action"
 	"github.com/zaquestion/lab/internal/git"
 	lab "github.com/zaquestion/lab/internal/gitlab"
 )

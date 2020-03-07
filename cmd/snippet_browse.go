@@ -9,7 +9,7 @@ import (
 	zsh "github.com/rsteube/cobra-zsh-gen"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/zaquestion/lab/cmd/action"
+	"github.com/zaquestion/lab/internal/action"
 )
 
 var snippetBrowseCmd = &cobra.Command{
