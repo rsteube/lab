@@ -34,3 +34,5 @@ require (
 )
 
 go 1.13
+
+replace github.com/rsteube/cobra-zsh-gen => github.com/rsteube/cobra-fish-gen v0.0.1

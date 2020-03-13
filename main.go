@@ -203,6 +203,8 @@ func skipInit() bool {
 	switch os.Args[1] {
 	case "completion":
 		return true
+	case "_fish_completion": // TODO and state check (no # in uid)
+        return len(os.Args) > 2 && os.Args[2] != "_" && !strings.ContainsRune(os.Args[2], '#')
 	default:
 		return false
 	}
