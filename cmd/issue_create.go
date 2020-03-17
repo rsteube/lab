@@ -9,7 +9,7 @@ import (
 	"strings"
 	"text/template"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -132,7 +132,7 @@ func init() {
 	issueCreateCmd.Flags().StringSliceP("assignees", "a", []string{}, "Set assignees by username")
 
 	issueCmd.AddCommand(issueCreateCmd)
-	zsh.Gen(issueCreateCmd).PositionalCompletion(
+	carapace.Gen(issueCreateCmd).PositionalCompletion(
 		action.Remotes(),
 	)
 }

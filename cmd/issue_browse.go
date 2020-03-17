@@ -4,7 +4,7 @@ import (
 	"log"
 	"strconv"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/zaquestion/lab/internal/action"
 	"github.com/zaquestion/lab/internal/browser"
@@ -45,7 +45,7 @@ var issueBrowseCmd = &cobra.Command{
 
 func init() {
 	issueCmd.AddCommand(issueBrowseCmd)
-	zsh.Gen(issueBrowseCmd).PositionalCompletion(
+	carapace.Gen(issueBrowseCmd).PositionalCompletion(
 		action.Remotes(),
 		action.Issues(issueList),
 	)

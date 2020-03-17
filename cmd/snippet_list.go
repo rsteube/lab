@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -66,7 +66,7 @@ func init() {
 	snippetListCmd.Flags().BoolVarP(&snippetListConfig.All, "all", "a", false, "List all snippets")
 
 	snippetCmd.AddCommand(snippetListCmd)
-	zsh.Gen(snippetListCmd).PositionalCompletion(
+	carapace.Gen(snippetListCmd).PositionalCompletion(
 		action.Remotes(),
 	)
 }

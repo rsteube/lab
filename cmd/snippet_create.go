@@ -12,7 +12,7 @@ import (
 	"text/template"
 
 	"github.com/pkg/errors"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -175,7 +175,7 @@ func init() {
 	snippetCmd.Flags().AddFlagSet(snippetCreateCmd.Flags())
 
 	snippetCmd.AddCommand(snippetCreateCmd)
-	zsh.Gen(snippetCreateCmd).PositionalCompletion(
+	carapace.Gen(snippetCreateCmd).PositionalCompletion(
 		action.Remotes(),
 	)
 }

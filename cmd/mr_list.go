@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -73,11 +73,11 @@ func init() {
 	listCmd.Flags().BoolVarP(&mrAll, "all", "a", false, "List all MRs on the project")
 
 	mrCmd.AddCommand(listCmd)
-	zsh.Gen(listCmd).FlagCompletion(zsh.ActionMap{
-		"state": zsh.ActionValues("opened", "closed", "merged"),
+	carapace.Gen(listCmd).FlagCompletion(carapace.ActionMap{
+		"state": carapace.ActionValues("opened", "closed", "merged"),
 	})
 
-	zsh.Gen(listCmd).PositionalCompletion(
+	carapace.Gen(listCmd).PositionalCompletion(
 		action.Remotes(),
 	)
 }

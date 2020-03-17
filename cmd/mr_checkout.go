@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitconfig "github.com/tcnksm/go-gitconfig"
 	gitlab "github.com/xanzy/go-gitlab"
@@ -97,8 +97,8 @@ func init() {
 	checkoutCmd.Flags().StringVarP(&mrCheckoutCfg.branch, "branch", "b", "", "checkout merge request with <branch> name")
 	checkoutCmd.Flags().BoolVarP(&mrCheckoutCfg.track, "track", "t", false, "set checked out branch to track mr author remote branch, adds remote if needed")
 	mrCmd.AddCommand(checkoutCmd)
-	zsh.Gen(checkoutCmd).PositionalCompletion(
-		zsh.ActionCallback(func(args []string) zsh.Action {
+	carapace.Gen(checkoutCmd).PositionalCompletion(
+		carapace.ActionCallback(func(args []string) carapace.Action {
 			return action.MergeRequests(mrList).Callback([]string{"origin"})
 		}),
 	)

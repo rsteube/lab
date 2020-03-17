@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/zaquestion/lab/internal/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
@@ -69,13 +69,13 @@ func init() {
 	mrCmd.AddCommand(mrThumbCmd)
 
 	mrThumbCmd.AddCommand(mrThumbUpCmd)
-	zsh.Gen(mrThumbUpCmd).PositionalCompletion(
+	carapace.Gen(mrThumbUpCmd).PositionalCompletion(
 		action.Remotes(),
 		action.MergeRequests(mrList),
 	)
 
 	mrThumbCmd.AddCommand(mrThumbDownCmd)
-	zsh.Gen(mrThumbDownCmd).PositionalCompletion(
+	carapace.Gen(mrThumbDownCmd).PositionalCompletion(
 		action.Remotes(),
 		action.MergeRequests(mrList),
 	)

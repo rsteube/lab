@@ -10,18 +10,18 @@ import (
 var completionCmd = &cobra.Command{
 	Use:       "completion",
 	Short:     "Generates the shell autocompletion",
-	Long:      `'completion bash' generates the bash and 'completion zsh' the zsh autocompletion`,
+	Long:      `'completion bash' generates the bash and 'completion carapace' the carapace autocompletion`,
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"bash", "zsh"},
+	ValidArgs: []string{"bash", "carapace"},
 	Run: func(cmd *cobra.Command, args []string) {
 		switch args[0] {
 		case "bash":
 			RootCmd.GenBashCompletion(os.Stdout)
-		case "zsh":
-			cmd, _, _ := RootCmd.Find([]string{"_zsh_completion"})
+		case "carapace":
+			cmd, _, _ := RootCmd.Find([]string{"_carapace_completion"})
 			cmd.Run(cmd, []string{})
 		default:
-			println("only 'bash' or 'zsh' allowed")
+			println("only 'bash' or 'carapace' allowed")
 		}
 	},
 }

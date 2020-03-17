@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/zaquestion/lab/internal/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
@@ -43,7 +43,7 @@ var snippetDeleteCmd = &cobra.Command{
 
 func init() {
 	snippetCmd.AddCommand(snippetDeleteCmd)
-	zsh.Gen(snippetDeleteCmd).PositionalCompletion(
+	carapace.Gen(snippetDeleteCmd).PositionalCompletion(
 		action.Remotes(),
 		action.Snippets(snippetList),
 	)

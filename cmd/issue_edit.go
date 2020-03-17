@@ -9,7 +9,7 @@ import (
 	"strings"
 	"text/template"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	gitlab "github.com/xanzy/go-gitlab"
@@ -284,7 +284,7 @@ func issueEditCmdAddFlags(flags *pflag.FlagSet) *pflag.FlagSet {
 func init() {
 	issueEditCmdAddFlags(issueEditCmd.Flags())
 	issueCmd.AddCommand(issueEditCmd)
-	zsh.Gen(issueEditCmd).PositionalCompletion(
+	carapace.Gen(issueEditCmd).PositionalCompletion(
 		action.Remotes(),
 		action.Issues(issueList),
 	)

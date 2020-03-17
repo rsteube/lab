@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -104,7 +104,7 @@ func init() {
 	ciStatusCmd.Flags().Bool("wait", false, "Continuously print the status and wait to exit until the pipeline finishes. Exit code indicates pipeline status")
 	ciCmd.AddCommand(ciStatusCmd)
 
-	zsh.Gen(ciStatusCmd).PositionalCompletion(
+	carapace.Gen(ciStatusCmd).PositionalCompletion(
 		action.Remotes(),
 		action.RemoteBranches(0),
 	)

@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -135,7 +135,7 @@ func parseCIVariables(vars []string) (map[string]string, error) {
 func init() {
 	ciCreateCmd.Flags().StringP("project", "p", "", "Project to create pipeline on")
 	ciCmd.AddCommand(ciCreateCmd)
-	zsh.Gen(ciCreateCmd).PositionalCompletion(
+	carapace.Gen(ciCreateCmd).PositionalCompletion(
 		action.Remotes(),
 	)
 
@@ -144,7 +144,7 @@ func init() {
 	ciTriggerCmd.Flags().StringSliceP("variable", "v", []string{}, "Variables to pass to pipeline")
 
 	ciCmd.AddCommand(ciTriggerCmd)
-	zsh.Gen(ciTriggerCmd).PositionalCompletion(
+	carapace.Gen(ciTriggerCmd).PositionalCompletion(
 		action.RemoteBranches(-1),
 	)
 }

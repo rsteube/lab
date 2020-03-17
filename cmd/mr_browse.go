@@ -6,7 +6,7 @@ import (
 	"path"
 	"strconv"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -65,7 +65,7 @@ var mrBrowseCmd = &cobra.Command{
 
 func init() {
 	mrCmd.AddCommand(mrBrowseCmd)
-	zsh.Gen(mrBrowseCmd).PositionalCompletion(
+	carapace.Gen(mrBrowseCmd).PositionalCompletion(
 		action.Remotes(),
 		action.MergeRequests(mrList),
 	)

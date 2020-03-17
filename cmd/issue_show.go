@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/glamour"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -151,7 +151,7 @@ func init() {
 	issueShowCmd.Flags().BoolP("comments", "c", false, "Show comments for the issue")
 	issueCmd.AddCommand(issueShowCmd)
 
-	zsh.Gen(issueShowCmd).PositionalCompletion(
+	carapace.Gen(issueShowCmd).PositionalCompletion(
 		action.Remotes(),
 		action.Issues(issueList),
 	)

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"text/template"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -99,7 +99,7 @@ func init() {
 	mrCreateNoteCmd.Flags().StringSliceP("message", "m", []string{}, "Use the given <msg>; multiple -m are concatenated as separate paragraphs")
 
 	mrCmd.AddCommand(mrCreateNoteCmd)
-	zsh.Gen(mrCreateNoteCmd).PositionalCompletion(
+	carapace.Gen(mrCreateNoteCmd).PositionalCompletion(
 		action.Remotes(),
 		action.MergeRequests(mrList),
 	)

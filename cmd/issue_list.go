@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -80,10 +80,10 @@ func init() {
 		"List all issues on the project")
 
 	issueCmd.AddCommand(issueListCmd)
-	zsh.Gen(issueListCmd).FlagCompletion(zsh.ActionMap{
-		"state": zsh.ActionValues("opened", "closed"),
+	carapace.Gen(issueListCmd).FlagCompletion(carapace.ActionMap{
+		"state": carapace.ActionValues("opened", "closed"),
 	})
-	zsh.Gen(issueListCmd).PositionalCompletion(
+	carapace.Gen(issueListCmd).PositionalCompletion(
 		action.Remotes(),
 	)
 }

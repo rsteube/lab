@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/zaquestion/lab/internal/action"
 	"github.com/zaquestion/lab/internal/git"
@@ -111,7 +111,7 @@ func doTrace(ctx context.Context, w io.Writer, pid interface{}, branch, name str
 
 func init() {
 	ciCmd.AddCommand(ciTraceCmd)
-	zsh.Gen(ciTraceCmd).PositionalCompletion(
+	carapace.Gen(ciTraceCmd).PositionalCompletion(
 		action.Remotes(),
 		action.RemoteBranches(0),
 	)

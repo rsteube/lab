@@ -12,7 +12,7 @@ import (
 	"text/template"
 
 	"github.com/pkg/errors"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitconfig "github.com/tcnksm/go-gitconfig"
 	gitlab "github.com/xanzy/go-gitlab"
@@ -42,7 +42,7 @@ func init() {
 	mergeRequestCmd.Flags().AddFlagSet(mrCreateCmd.Flags())
 
 	mrCmd.AddCommand(mrCreateCmd)
-	zsh.Gen(mrCreateCmd).PositionalCompletion(
+	carapace.Gen(mrCreateCmd).PositionalCompletion(
 		action.Remotes(),
 		action.RemoteBranches(0),
 	)

@@ -14,7 +14,7 @@ import (
 	"github.com/gdamore/tcell"
 	"github.com/pkg/errors"
 	"github.com/rivo/tview"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 
 	"github.com/lunixbochs/vtclean"
@@ -638,7 +638,7 @@ func latestJobs(jobs []*gitlab.Job) []*gitlab.Job {
 
 func init() {
 	ciCmd.AddCommand(ciViewCmd)
-	zsh.Gen(ciViewCmd).PositionalCompletion(
+	carapace.Gen(ciViewCmd).PositionalCompletion(
 		action.Remotes(),
 		action.RemoteBranches(0),
 	)

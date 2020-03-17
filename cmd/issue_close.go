@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/zaquestion/lab/internal/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
@@ -37,7 +37,7 @@ var issueCloseCmd = &cobra.Command{
 
 func init() {
 	issueCmd.AddCommand(issueCloseCmd)
-	zsh.Gen(issueCloseCmd).PositionalCompletion(
+	carapace.Gen(issueCloseCmd).PositionalCompletion(
 		action.Remotes(),
 		action.Issues(issueList),
 	)

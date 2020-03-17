@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/glamour"
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	gitlab "github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/action"
@@ -89,7 +89,7 @@ WebURL: %s
 func init() {
 	mrShowCmd.Flags().BoolP("no-markdown", "M", false, "Don't use markdown renderer to print the issue description")
 	mrCmd.AddCommand(mrShowCmd)
-	zsh.Gen(mrShowCmd).PositionalCompletion(
+	carapace.Gen(mrShowCmd).PositionalCompletion(
 		action.Remotes(),
 		action.MergeRequests(mrList),
 	)

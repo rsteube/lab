@@ -6,7 +6,7 @@ import (
 	"path"
 	"strconv"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/zaquestion/lab/internal/action"
@@ -60,7 +60,7 @@ var snippetBrowseCmd = &cobra.Command{
 
 func init() {
 	snippetCmd.AddCommand(snippetBrowseCmd)
-	zsh.Gen(snippetBrowseCmd).PositionalCompletion(
+	carapace.Gen(snippetBrowseCmd).PositionalCompletion(
 		action.Remotes(),
 		action.Snippets(snippetList),
 	)

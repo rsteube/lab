@@ -15,7 +15,7 @@ require (
 	github.com/onsi/gomega v1.4.3 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/rivo/tview v0.0.0-20191129065140-82b05c9fb329
-	github.com/rsteube/cobra-zsh-gen v1.2.10
+        github.com/rsteube/carapace v0.0.1
 	github.com/sirupsen/logrus v1.2.0 // indirect
 	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
 	github.com/smartystreets/goconvey v0.0.0-20181108003508-044398e4856c // indirect
@@ -34,5 +34,3 @@ require (
 )
 
 go 1.13
-
-replace github.com/rsteube/cobra-zsh-gen => github.com/rsteube/cobra-fish-gen v0.0.1

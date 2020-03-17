@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	zsh "github.com/rsteube/cobra-zsh-gen"
+	"github.com/rsteube/carapace"
 	"github.com/spf13/cobra"
 	"github.com/zaquestion/lab/internal/action"
 	lab "github.com/zaquestion/lab/internal/gitlab"
@@ -37,7 +37,7 @@ var mrApproveCmd = &cobra.Command{
 
 func init() {
 	mrCmd.AddCommand(mrApproveCmd)
-	zsh.Gen(mrApproveCmd).PositionalCompletion(
+	carapace.Gen(mrApproveCmd).PositionalCompletion(
 		action.Remotes(),
 		action.MergeRequests(mrList),
 	)
