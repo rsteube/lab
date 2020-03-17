@@ -17,11 +17,14 @@ var completionCmd = &cobra.Command{
 		switch args[0] {
 		case "bash":
 			RootCmd.GenBashCompletion(os.Stdout)
-		case "carapace":
-			cmd, _, _ := RootCmd.Find([]string{"_carapace_completion"})
-			cmd.Run(cmd, []string{})
+		case "fish":
+			cmd, _, _ := RootCmd.Find([]string{"_carapace"})
+			cmd.Run(cmd, []string{"fish"})
+		case "zsh":
+			cmd, _, _ := RootCmd.Find([]string{"_carapace"})
+			cmd.Run(cmd, []string{"zsh"})
 		default:
-			println("only 'bash' or 'carapace' allowed")
+			println("only 'bash', 'fish' or 'zsh' allowed")
 		}
 	},
 }
