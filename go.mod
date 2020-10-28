@@ -33,7 +33,7 @@ require (
 	github.com/pelletier/go-toml v1.8.1 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/rivo/tview v0.0.0-20191129065140-82b05c9fb329
-	github.com/rsteube/carapace v0.0.16
+	github.com/rsteube/carapace v0.1.6
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/spf13/afero v1.4.1
 	github.com/spf13/cast v1.3.1 // indirect
